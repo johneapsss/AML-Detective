@@ -1,0 +1,60 @@
+{
+  "title": "AML Detective: The KYC Files",
+  "intro": "You are Lead Detective Riley, investigating layered transactions tied to shell companies. Follow AML controls, validate KYC evidence, and stop the laundering network.",
+  "cases": [
+    {
+      "id": "case-001",
+      "title": "The Structuring Pattern",
+      "scenario": "A retail customer makes 12 cash deposits just below the reporting threshold across different branches in 3 days. What should you do first?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "File an internal alert, aggregate linked transactions, and escalate for potential SAR review.",
+          "is_correct": true,
+          "explanation": "Correct. Structuring indicators require aggregation and escalation under AML monitoring procedures."
+        },
+        {
+          "key": "B",
+          "text": "Ignore the activity because each deposit is below threshold.",
+          "is_correct": false,
+          "explanation": "Not correct. Threshold avoidance is a core red flag and should not be dismissed."
+        },
+        {
+          "key": "C",
+          "text": "Close the account immediately without documenting rationale.",
+          "is_correct": false,
+          "explanation": "Not correct. Action must be evidence-based and documented through compliance workflow."
+        }
+      ],
+      "success_summary": "You connected the deposits and preserved evidence for the AML investigations team.",
+      "failure_summary": "The suspect kept exploiting branch fragmentation while the red flags went unreported."
+    },
+    {
+      "id": "case-002",
+      "title": "Beneficial Ownership Mismatch",
+      "scenario": "A newly onboarded import/export company lists a nominee director, but payment instructions route to an unrelated offshore entity. What is the strongest next step?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Refresh KYC, verify beneficial ownership, and apply enhanced due diligence before processing high-risk transfers.",
+          "is_correct": true,
+          "explanation": "Correct. Ownership inconsistencies and offshore routing require refreshed KYC and enhanced due diligence."
+        },
+        {
+          "key": "B",
+          "text": "Accept the instructions to avoid customer friction.",
+          "is_correct": false,
+          "explanation": "Not correct. Customer convenience cannot override AML obligations."
+        },
+        {
+          "key": "C",
+          "text": "Wait until annual review cycle to investigate.",
+          "is_correct": false,
+          "explanation": "Not correct. Material KYC discrepancies demand immediate risk-based action."
+        }
+      ],
+      "success_summary": "You exposed the hidden controller and blocked a likely layering route.",
+      "failure_summary": "The network moved funds before controls were tightened, creating regulatory exposure."
+    }
+  ]
+}
