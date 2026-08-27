@@ -1,0 +1,352 @@
+{
+  "title": "AML Detective: Singapore KYC Files",
+  "intro": "You are Detective Riley, assigned by the Head Detective to investigate AML/KYC alerts that may involve laundering networks.",
+  "disclaimer": "This game is educational and set in a fictionalized Singapore regulatory context. It is not legal advice and should not be treated as universal regulation.",
+  "starting_resources": {
+    "time": 100,
+    "budget": 100,
+    "energy": 100
+  },
+  "rank_thresholds": {
+    "Trainee": 0,
+    "Investigator": 20,
+    "Senior Investigator": 45,
+    "Financial Crime Expert": 80
+  },
+  "cases": [
+    {
+      "id": "easy-001",
+      "title": "The Marina Trading Mystery",
+      "difficulty": "easy",
+      "opening": "Head Detective: A transaction-monitoring alert flagged repeated cash deposits followed by overseas transfers from Marina Trading Pte. Ltd.",
+      "characters": [
+        "Riley (Detective)",
+        "Aisha (Relationship Manager)",
+        "Leo Tan (Customer Director)",
+        "Nora Lim (Compliance Analyst)"
+      ],
+      "entities": [
+        "Marina Trading Pte. Ltd.",
+        "Harbor Supplies HK Ltd.",
+        "Account SG-01911"
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "description": "KYC profile lists low expected turnover but account activity spikes 6x in 2 weeks.",
+          "source": "KYC records",
+          "related": "Marina Trading",
+          "reliability": "high",
+          "is_red_flag_easy": true,
+          "connects_to": ["E2", "E3"],
+          "conditions": "Review customer KYC records"
+        },
+        {
+          "id": "E2",
+          "description": "Twelve deposits just below reporting threshold across multiple branches.",
+          "source": "Transaction monitoring",
+          "related": "Account SG-01911",
+          "reliability": "high",
+          "is_red_flag_easy": true,
+          "connects_to": ["E1"],
+          "conditions": "Review transactions"
+        },
+        {
+          "id": "E3",
+          "description": "Customer explanation conflicts with invoice dates and values.",
+          "source": "Interview notes",
+          "related": "Leo Tan",
+          "reliability": "medium",
+          "is_red_flag_easy": false,
+          "connects_to": ["E1"],
+          "conditions": "Interview customer"
+        },
+        {
+          "id": "E4",
+          "description": "A legitimate seasonal payment to a known domestic vendor.",
+          "source": "Transaction ledger",
+          "related": "Domestic vendor",
+          "reliability": "high",
+          "is_red_flag_easy": false,
+          "connects_to": [],
+          "conditions": "Review transactions"
+        }
+      ],
+      "actions": [
+        {
+          "key": "A",
+          "text": "Examine customer KYC records",
+          "costs": {"time": 8, "budget": 4, "energy": 6},
+          "reveals_evidence": ["E1"],
+          "narrative": "You find a mismatch between declared activity and actual turnover.",
+          "risk_indicator": "customer risk assessment mismatch"
+        },
+        {
+          "key": "B",
+          "text": "Review transactions and follow transaction chains",
+          "costs": {"time": 12, "budget": 7, "energy": 10},
+          "reveals_evidence": ["E2", "E4"],
+          "narrative": "Structured deposits and linked international transfers appear in a repeating pattern.",
+          "risk_indicator": "structuring and layering pattern"
+        },
+        {
+          "key": "C",
+          "text": "Interview the customer and request additional documentation",
+          "costs": {"time": 10, "budget": 5, "energy": 9},
+          "reveals_evidence": ["E3"],
+          "narrative": "The customer provides inconsistent explanations and incomplete support documents.",
+          "risk_indicator": "source of funds inconsistency"
+        }
+      ],
+      "conclusions": [
+        {
+          "key": "A",
+          "label": "Escalate for suspicious activity review and enhanced due diligence",
+          "outcome_type": "criminal activity correctly identified"
+        },
+        {
+          "key": "B",
+          "label": "Mark as false positive and close alert",
+          "outcome_type": "suspicious activity missed"
+        },
+        {
+          "key": "C",
+          "label": "Restrict account immediately without escalation rationale",
+          "outcome_type": "case escalated unnecessarily"
+        }
+      ],
+      "correct_conclusion": "A",
+      "actual_activity": "A likely layering pattern through a shell counterparty using structured deposits and rapid outward transfers.",
+      "key_red_flags": [
+        "Structuring/smurfing",
+        "Profile-to-activity mismatch",
+        "Inconsistent source of funds explanation"
+      ],
+      "recommended_approach": "Aggregate linked transactions, verify source of funds, and escalate through formal suspicious activity workflow."
+    },
+    {
+      "id": "intermediate-001",
+      "title": "Nominee Director Network",
+      "difficulty": "intermediate",
+      "opening": "Head Detective: An import/export client recently onboarded in Singapore routes funds to entities in two high-risk jurisdictions with unclear ownership.",
+      "characters": [
+        "Riley (Detective)",
+        "Ming Ho (Operations Manager)",
+        "Ravi Nair (Nominee Director)",
+        "Iris Chua (EDD Specialist)",
+        "Ken Wu (Counterparty Contact)"
+      ],
+      "entities": [
+        "Straits Gate Logistics",
+        "Ivory Reef Holdings",
+        "Northshore Commodities",
+        "Accounts SG-47811 / SG-47812"
+      ],
+      "evidence": [
+        {
+          "id": "E5",
+          "description": "Corporate registry extracts show nominee director overlap across three shell-like entities.",
+          "source": "Corporate records",
+          "related": "Ravi Nair",
+          "reliability": "high",
+          "is_red_flag_easy": false,
+          "connects_to": ["E6", "E8"],
+          "conditions": "Investigate companies"
+        },
+        {
+          "id": "E6",
+          "description": "Payment chain includes round-dollar invoices and immediate pass-through transfers.",
+          "source": "Transaction analysis",
+          "related": "SG-47811",
+          "reliability": "high",
+          "is_red_flag_easy": false,
+          "connects_to": ["E5"],
+          "conditions": "Follow transaction chains"
+        },
+        {
+          "id": "E7",
+          "description": "One high-value transfer maps to legitimate commodity settlement terms.",
+          "source": "Contract review",
+          "related": "Northshore Commodities",
+          "reliability": "medium",
+          "is_red_flag_easy": false,
+          "connects_to": [],
+          "conditions": "Review source-of-funds documents"
+        },
+        {
+          "id": "E8",
+          "description": "Beneficial owner declaration omits controlling party linked through trust structure.",
+          "source": "Beneficial ownership file",
+          "related": "Ivory Reef Holdings",
+          "reliability": "high",
+          "is_red_flag_easy": false,
+          "connects_to": ["E5"],
+          "conditions": "Investigate beneficial owners"
+        }
+      ],
+      "actions": [
+        {
+          "key": "A",
+          "text": "Investigate companies and internal records",
+          "costs": {"time": 15, "budget": 10, "energy": 11},
+          "reveals_evidence": ["E5"],
+          "narrative": "Cross-entity registry checks reveal repeating nominee structures.",
+          "risk_indicator": "shell company network"
+        },
+        {
+          "key": "B",
+          "text": "Investigate beneficial owners and escalate customer for enhanced due diligence",
+          "costs": {"time": 14, "budget": 12, "energy": 12},
+          "reveals_evidence": ["E8"],
+          "narrative": "Enhanced due diligence reveals hidden control through a trust nominee chain.",
+          "risk_indicator": "beneficial ownership concealment"
+        },
+        {
+          "key": "C",
+          "text": "Follow transaction chains and compare stated business with actual flows",
+          "costs": {"time": 16, "budget": 9, "energy": 13},
+          "reveals_evidence": ["E6", "E7"],
+          "narrative": "You separate one legitimate payment from a broader circular layering pattern.",
+          "risk_indicator": "mixed legitimate and suspicious flows"
+        }
+      ],
+      "conclusions": [
+        {
+          "key": "A",
+          "label": "Escalate for suspicious activity and recommend temporary transaction restrictions",
+          "outcome_type": "partial laundering network uncovered"
+        },
+        {
+          "key": "B",
+          "label": "Clear customer as fully legitimate based on one valid invoice",
+          "outcome_type": "suspicious activity missed"
+        },
+        {
+          "key": "C",
+          "label": "Accuse nominee director as sole actor without ownership analysis",
+          "outcome_type": "wrong suspect accused"
+        }
+      ],
+      "correct_conclusion": "A",
+      "actual_activity": "A mixed-flow account used both for legitimate trade payments and for layered movements routed through nominee-controlled entities.",
+      "key_red_flags": [
+        "Hidden beneficial ownership",
+        "Circular fund movement",
+        "Use of shell entities in high-risk corridors"
+      ],
+      "recommended_approach": "Combine beneficial ownership verification with chain analysis before deciding escalation and account controls."
+    },
+    {
+      "id": "advanced-001",
+      "title": "Correspondent Maze",
+      "difficulty": "advanced",
+      "opening": "Head Detective: A correspondent banking client may be moving fraud proceeds through nested accounts, crypto off-ramps, and trade invoices.",
+      "characters": [
+        "Riley (Detective)",
+        "Zara Ong (Correspondent Manager)",
+        "Daniel Pike (Payments Lead)",
+        "Farah Aziz (Adverse Media Analyst)",
+        "Unknown Mule Coordinator"
+      ],
+      "entities": [
+        "Blue Meridian Bank",
+        "Pacific Bridge Services",
+        "Nova Cross Digital Assets",
+        "Nested Nostro Accounts"
+      ],
+      "evidence": [
+        {
+          "id": "E9",
+          "description": "Adverse media links a controlling shareholder to prior mule account investigations.",
+          "source": "Adverse media review",
+          "related": "Pacific Bridge Services",
+          "reliability": "medium",
+          "is_red_flag_easy": false,
+          "connects_to": ["E10", "E12"],
+          "conditions": "Review sanctions/PEP/adverse-media information"
+        },
+        {
+          "id": "E10",
+          "description": "Nested transfers fan out to newly opened personal accounts before crypto conversion.",
+          "source": "Transaction chain tracing",
+          "related": "Nested Nostro Accounts",
+          "reliability": "high",
+          "is_red_flag_easy": false,
+          "connects_to": ["E11"],
+          "conditions": "Trace overseas payments"
+        },
+        {
+          "id": "E11",
+          "description": "Source-of-wealth file contains unsupported declarations and recycled audit letters.",
+          "source": "Source-of-wealth documentation",
+          "related": "Blue Meridian Bank client group",
+          "reliability": "high",
+          "is_red_flag_easy": false,
+          "connects_to": ["E10"],
+          "conditions": "Examine source of wealth"
+        },
+        {
+          "id": "E12",
+          "description": "One seemingly suspicious transfer is tied to a genuine emergency supplier payment.",
+          "source": "Counterparty interview",
+          "related": "Emergency supplier",
+          "reliability": "medium",
+          "is_red_flag_easy": false,
+          "connects_to": [],
+          "conditions": "Investigate counterparties"
+        }
+      ],
+      "actions": [
+        {
+          "key": "A",
+          "text": "Review sanctions/PEP/adverse-media information and internal intelligence",
+          "costs": {"time": 18, "budget": 12, "energy": 14},
+          "reveals_evidence": ["E9"],
+          "narrative": "You identify historical indicators linking controllers to mule-account operations.",
+          "risk_indicator": "adverse media and controller risk"
+        },
+        {
+          "key": "B",
+          "text": "Trace overseas payment chains through correspondent and crypto off-ramps",
+          "costs": {"time": 20, "budget": 15, "energy": 17},
+          "reveals_evidence": ["E10", "E12"],
+          "narrative": "Layering routes emerge, but one transfer has a legitimate emergency rationale.",
+          "risk_indicator": "layering via nested correspondent flows"
+        },
+        {
+          "key": "C",
+          "text": "Examine source of funds and source of wealth evidence for controlling parties",
+          "costs": {"time": 17, "budget": 11, "energy": 15},
+          "reveals_evidence": ["E11"],
+          "narrative": "Declared wealth documentation appears recycled and unsupported by independent records.",
+          "risk_indicator": "unsupported source of wealth"
+        }
+      ],
+      "conclusions": [
+        {
+          "key": "A",
+          "label": "Escalate suspicious activity and recommend coordinated correspondent controls",
+          "outcome_type": "entire network uncovered"
+        },
+        {
+          "key": "B",
+          "label": "Conclude all transactions are legitimate due to mixed evidence",
+          "outcome_type": "suspicious activity missed"
+        },
+        {
+          "key": "C",
+          "label": "Freeze all related accounts immediately without proportional analysis",
+          "outcome_type": "case escalated unnecessarily"
+        }
+      ],
+      "correct_conclusion": "A",
+      "actual_activity": "Fraud proceeds are layered through nested correspondent accounts and partially blended with legitimate payments to reduce detection confidence.",
+      "key_red_flags": [
+        "Nested correspondent layering",
+        "Mule-account indicators",
+        "Unsupported source of wealth"
+      ],
+      "recommended_approach": "Use risk-based proportional controls: validate source evidence, isolate legitimate flows, and escalate suspicious patterns with documented rationale."
+    }
+  ]
+}
