@@ -1,6 +1,6 @@
 # AML-Detective
 
-A text-based game about a detective in the AML/KYC space who solves AML-related financial crimes.
+A text-based AML/KYC detective game where you investigate financial-crime alerts, gather evidence, and submit case conclusions.
 
 ## Run the game
 
@@ -8,17 +8,31 @@ A text-based game about a detective in the AML/KYC space who solves AML-related 
 python aml_detective_game.py
 ```
 
-## Update game requirements/content
-
-The game is driven by `/home/runner/work/AML-Detective/AML-Detective/game_content.json`.
-
-To update scenarios, choices, or outcomes, edit that JSON document and rerun:
+### Useful options
 
 ```bash
+# start fresh and ignore prior saved state
+python aml_detective_game.py --new-game
+
+# use custom requirement/case file
 python aml_detective_game.py --content-file game_content.json
+
+# save progress to a specific file
+python aml_detective_game.py --save-file game_progress.json
 ```
 
-This lets you raise follow-up requests and evolve the game content without changing core game code.
+## Requirements/content architecture
+
+The game engine is in `/home/runner/work/AML-Detective/AML-Detective/aml_detective_game.py` and case requirements are externalized in `/home/runner/work/AML-Detective/AML-Detective/game_content.json`.
+
+The current MVP content reflects the attached requirement set with:
+- 3 difficulty levels (easy, intermediate, advanced)
+- resource tracking (time, budget, energy)
+- experience score and rank progression
+- evidence attributes and multiple outcomes per case
+- educational disclaimer for a Singapore-focused fictional context
+
+Add or revise case files by editing `game_content.json` without rewriting the engine.
 
 ## Run tests
 
