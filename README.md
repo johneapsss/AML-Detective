@@ -8,6 +8,14 @@ A text-based AML/KYC detective game where you investigate financial-crime alerts
 python aml_detective_game.py
 ```
 
+## Run in a website
+
+```bash
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000/index.html` in your browser.
+
 ### Useful options
 
 ```bash

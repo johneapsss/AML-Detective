@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AML Detective</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1 id="game-title">AML Detective</h1>
+        <p id="game-intro"></p>
+        <p class="disclaimer" id="game-disclaimer"></p>
+      </header>
+
+      <section class="panel">
+        <p id="status-line">Loading game content...</p>
+        <button id="start-button" type="button" disabled>Start game</button>
+      </section>
+
+      <section id="game-area" class="panel" aria-live="polite"></section>
+    </main>
+  </body>
+</html>
